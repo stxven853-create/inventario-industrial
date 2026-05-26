@@ -1,21 +1,36 @@
 name: Build EXE
 on: [push]
+
 jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install dependencies
+
+      - name: Instalar dependencias
         run: pip install pyinstaller openpyxl pillow
-      - name: Build EXE
+
+      - name: Compilar EXE
         run: |
           cd inventario_industrial_v2
           pyinstaller main.spec --clean --noconfirm
-      - name: Upload EXE
-        uses: actions/upload-artifact@v3
+
+      - name: Crear carpetas necesarias
+        shell: cmd
+        run: |
+          mkdir inventario_industrial_v2\dist\data
+          mkdir inventario_industrial_v2\dist\backups
+          mkdir inventario_industrial_v2\dist\reportes
+          mkdir inventario_industrial_v2\dist\reportes_compartidos
+          mkdir inventario_industrial_v2\dist\excel_compartido
+          mkdir inventario_industrial_v2\dist\imagenes
+
+      - name: Descargar EXE
+        uses: actions/upload-artifact@v4
         with:
           name: InventarioIndustrial_EXE
           path: inventario_industrial_v2/dist/
