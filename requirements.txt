@@ -1,0 +1,11 @@
+# ══════════════════════════════════════════════════
+# DEPENDENCIAS - Sistema de Inventario Industrial
+# ══════════════════════════════════════════════════
+# Instalar con: pip install -r requirements.txt
+
+openpyxl>=3.1.0        # Lectura/escritura Excel
+reportlab>=4.0.0       # Generación de PDF
+pillow>=10.0.0         # Imágenes de productos (opcional)
+
+# Tkinter viene incluido con Python estándar
+# SQLite viene incluido con Python estándar
